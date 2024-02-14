@@ -19,10 +19,56 @@
 
 <body>
 
+<div class="row">
+    <div>
+        <h5>Insertar Imagen con PHP</h5>
+
+        <form action="php/funciones.php" method="post" enctype="multipart/form-data">
+            <div class="file-field input-field">
+                <div class="btn">
+                    <span>Imagen</span>
+                    <input type="file" name="imagen" id="imagen">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+            <input type="submit" value="Enviar" class="btn" name="enviar" id="enviar">
+        </form>
+    </div>
+</div>
 
 
 
+<div class="row">
+    <div class="col s8 offset-s2">
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Imagen</th>
+                </tr>
+            </thead>
+            <?php 
+                require_once('php/conexion.php');
+                $sql = "SELECT * FROM dato";
+                $execute = mysqli_query($conn, $sql);
 
+                while($fila = mysqli_fetch_array($execute)){
+                    
+            ?>
+            <tbody>
+                <tr>
+                    <td><?php echo $fila['id'] ?></td>
+                    <td><img src="<?php echo substr($fila['ruta'],3) ?>" alt="" srcset="">  </td>
+                </tr>
+            </tbody>
+            <?php 
+                }
+            ?>
+        </table>
+    </div>
+</div>
 
 
 
